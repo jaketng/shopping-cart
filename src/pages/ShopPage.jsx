@@ -35,8 +35,7 @@ const ShopPage = () => {
 
     return(
         <>
-        <h1>Shop Page</h1>
-        <div>
+        <div className='product-grid'>
             {products.map(product => (
                 <ProductCard key={product.id} product={product} />
             ))}
