@@ -3,6 +3,14 @@
   box-sizing: border-box;
 }
 
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
 /*------------------------------------------------------*/
 
 .product-grid {
@@ -226,4 +234,38 @@ nav {
   line-height: 1;
   min-width: 20px;
   text-align: center;
+}
+
+/*------------------------------------------------------*/
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 100px);
+  margin-top: -100px;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+}
+
+.home-page h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.shop-now-button {
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #ff6347;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.shop-now-button:hover {
+  background-color: #ff4500;
 }
