@@ -33,7 +33,6 @@ const CartPage = ({ userId }) => {
     return <p>No cart data found</p>;
   }
 
-  // Render cart data if all conditions are met
   return (
     <>
       <h1>Cart Page</h1>

@@ -17,10 +17,7 @@ const ProductCard = ({ product }) => {
     setQuantity(value >= 0 ? value : 0);
   };
 
-  const handleAddToCart = () => {
-    const totalQuantity = cartQuantity + quantity;
-    setCartQuantity(totalQuantity);
-  };
+  const handleAddToCart = () => {};
 
   return (
     <div className="product-card">

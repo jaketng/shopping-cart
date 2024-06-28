@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ShoppingCart } from "phosphor-react";
 
-const Navbar = () => {
+const Navbar = ({ cartQuantity }) => {
   return (
     <>
       <nav>
@@ -25,7 +25,10 @@ const Navbar = () => {
 
         <div className="cart-icon">
           <Link to="/cart">
-            <ShoppingCart size={32} />
+            <ShoppingCart size={32} />{" "}
+            <span className="cart-quantity">
+              <p>{cartQuantity}</p>
+            </span>
           </Link>
         </div>
       </nav>
