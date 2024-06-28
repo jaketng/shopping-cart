@@ -10,23 +10,24 @@
   flex-wrap: wrap;
   gap: 20px;
   margin-top: 20px;
-  margin-left: 10%;
-  margin-right: 10%;
+  padding: 0 10px; /* Adjusted padding for responsiveness */
   justify-content: center;
 }
 
 .product-card {
-  border: 1px solid #ccc;
   padding: 10px;
-  width: 250px;
+  width: 100%; /* Full width on smaller screens, adjust for larger screens */
+  max-width: 300px; /* Limit width for larger screens */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .product-card img {
   width: 100%;
-  height: auto;
+  height: 100%; /* Maintain aspect ratio */
   max-height: 200px;
   object-fit: contain;
   margin-bottom: 10px;
@@ -35,12 +36,118 @@
 .product-card h2 {
   font-size: 18px;
   margin: 0 0 5px;
+  overflow: hidden; /* Hide any overflow text */
+  text-overflow: ellipsis; /* Display ellipsis (...) when text overflows */
+  white-space: nowrap; /* Prevent wrapping onto multiple lines */
 }
 
 .product-card p {
   font-size: 16px;
   color: #333;
-  margin-bottom: 10px;
+}
+
+.quantity-controls {
+  display: flex;
+  justify-content: left;
+  margin: 10px 0;
+}
+
+.quantity-controls button {
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 0;
+  transition: background-color 0.3s ease;
+}
+
+.quantity-controls button:hover {
+  background-color: #0056b3;
+}
+
+.quantity-controls input {
+  width: 50px;
+  text-align: center;
+  font-size: 14px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 0px 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.add-to-cart-button {
+  --border-radius: 30px;
+  --border-width: 3px;
+
+  width: 100%; /* Full width on smaller screens */
+  max-width: 125px; /* Limit width for larger screens */
+  height: 30px; /* Adjusted height for better visibility */
+  position: relative;
+  border: 0;
+  margin-bottom: 15px;
+  background-color: transparent;
+  color: #000000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center; /* Horizontally center text */
+  align-items: center; /* Vertically center text */
+  cursor: pointer;
+  padding-top: 14px;
+  padding-bottom: 10px;
+}
+
+.add-to-cart-button::after {
+  --m-i: linear-gradient(#000, #000);
+  --m-o: content-box, padding-box;
+
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: var(--border-width);
+  border-radius: var(--border-radius);
+  background-image: conic-gradient(
+    #488cfb,
+    #29dbbc,
+    #ddf505,
+    #ff9f0e,
+    #e440bb,
+    #655adc,
+    #488cfb
+  );
+
+  mask-image: var(--m-i), var(--m-i);
+  mask-origin: var(--m-o);
+  mask-clip: var(--m-o);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+
+  filter: hue-rotate(0);
+  animation: hue linear 500ms infinite;
+  animation-play-state: paused;
+}
+
+.add-to-cart-button:hover::after {
+  animation-play-state: running;
+}
+
+@keyframes hue {
+  to {
+    filter: hue-rotate(1turn);
+  }
 }
 
 /*------------------------------------------------------*/
@@ -49,13 +156,16 @@ nav {
   background-color: #333;
   display: flex;
   flex-wrap: wrap;
-  padding: 45px;
+  padding: 15px 10px; /* Adjusted padding for responsiveness */
+  justify-content: space-between; /* Ensure elements are spaced apart */
+  align-items: center; /* Center items vertically */
 }
 
 .nav-header h1 {
   font-size: 1.5rem;
   color: white;
-  text-decoration: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-header a {
@@ -63,9 +173,10 @@ nav {
 }
 
 .nav-links {
-  flex-grow: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 
 .nav-links ul {
@@ -80,7 +191,7 @@ nav {
   color: white;
   text-decoration: none;
   padding: 10px 15px;
-  font-size: 1.2rem;
+  font-size: 1rem; /* Adjusted font size for smaller screens */
 }
 
 .cart-icon a {
