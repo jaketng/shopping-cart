@@ -1,8 +1,8 @@
 import { useState } from "react";
-import AddToCartButton from "./AddToCartButton.jsx";
 
 const ProductCard = ({ product }) => {
   const [quantity, setQuantity] = useState(0);
+  const [cartQuantity, setCartQuantity] = useState(0);
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -17,6 +17,11 @@ const ProductCard = ({ product }) => {
     setQuantity(value >= 0 ? value : 0);
   };
 
+  const handleAddToCart = () => {
+    const totalQuantity = cartQuantity + quantity;
+    setCartQuantity(totalQuantity);
+  };
+
   return (
     <div className="product-card">
       <h2>{product.title}</h2>
@@ -27,7 +32,9 @@ const ProductCard = ({ product }) => {
         <input type="number" value={quantity} onChange={handleInput} min="1" />
         <button onClick={handleIncrement}>+</button>
       </div>
-      <AddToCartButton quantity={quantity} />
+      <button onClick={handleAddToCart} className="add-to-cart-button">
+        + Add to Cart
+      </button>
     </div>
   );
 };

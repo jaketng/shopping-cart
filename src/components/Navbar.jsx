@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { ShoppingCart } from "phosphor-react";
 
 const Navbar = () => {
@@ -24,7 +25,6 @@ const Navbar = () => {
 
         <div className="cart-icon">
           <Link to="/cart">
-            {" "}
             <ShoppingCart size={32} />
           </Link>
         </div>

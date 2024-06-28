@@ -8,7 +8,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/shop" element={<ShopPage />} />
-      <Route path="/cart" element={<CartPage />} />
+      <Route path="/cart" element={<CartPage userId={1} />} />
     </Routes>
   );
 };
