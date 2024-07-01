@@ -1,8 +1,18 @@
-# React + Vite
+# Shopping Cart Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple e-commerce web application built using React.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Browse products
+- Add products to cart
+- View cart quantity
+
+## Installation
+
+```bash
+git clone https://github.com/your-username/shopping-cart.git
+cd shopping-cart
+npm install
+npm start
+```
