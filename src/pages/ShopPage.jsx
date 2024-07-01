@@ -4,6 +4,8 @@ import { fetchProducts } from "../api/fakestoreApi";
 
 const ShopPage = ({ handleAddToCart }) => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -12,11 +14,22 @@ const ShopPage = ({ handleAddToCart }) => {
         setProducts(productsData);
       } catch (error) {
         console.error("Error fetching products:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     loadProducts();
   }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div className="product-grid">

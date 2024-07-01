@@ -15,7 +15,7 @@ const ProductCard = ({ product, onAddToCart }) => {
   const handleInput = (e) => {
     const value = e.target.value.replace(/^0+(?!$)/, "");
     const parsedValue = parseInt(value, 10);
-    setQuantity(Number.isNaN(parsedValue) ? 0 : parsedValue);
+    setQuantity(Number.isNaN(parsedValue) || parsedValue < 0 ? 0 : parsedValue);
   };
 
   const handleAddToCart = async () => {
