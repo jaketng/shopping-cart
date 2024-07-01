@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { addToCart } from "../api/fakestoreApi";
+import { useCart } from "../contexts/CartContext.jsx";
 
-const ProductCard = ({ product, onAddToCart }) => {
+const ProductCard = ({ product }) => {
   const [quantity, setQuantity] = useState(0);
+  const { addToCart } = useCart();
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -18,14 +19,9 @@ const ProductCard = ({ product, onAddToCart }) => {
     setQuantity(Number.isNaN(parsedValue) || parsedValue < 0 ? 0 : parsedValue);
   };
 
-  const handleAddToCart = async () => {
-    try {
-      await addToCart(product.id, quantity);
-      onAddToCart(quantity);
-      setQuantity(0);
-    } catch (error) {
-      console.error("Error adding product to cart:", error);
-    }
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+    setQuantity(0);
   };
 
   return (

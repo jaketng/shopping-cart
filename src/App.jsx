@@ -1,18 +1,15 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import AppRoutes from "./routes/Routes";
+import { CartProvider } from "./contexts/CartContext.jsx";
 
 function App() {
-  const [cartQuantity, setCartQuantity] = useState(0);
-
-  const handleAddToCart = (quantity) => {
-    setCartQuantity((prevQuantity) => prevQuantity + quantity);
-  };
-
   return (
     <>
-      <Navbar cartQuantity={cartQuantity} />
-      <AppRoutes handleAddToCart={handleAddToCart} />
+      <CartProvider>
+        <Navbar />
+        <AppRoutes />
+      </CartProvider>
     </>
   );
 }

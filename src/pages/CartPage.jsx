@@ -1,56 +1,48 @@
-import React, { useEffect, useState } from "react";
-import { fetchCartData } from "../api/fakestoreApi";
+import React from "react";
+import { useCart } from "../contexts/CartContext.jsx";
 
-const CartPage = ({ userId }) => {
-  const [cart, setCart] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const CartPage = () => {
+  const { cart, removeFromCart, clearCart } = useCart();
 
-  useEffect(() => {
-    const loadCart = async () => {
-      try {
-        const cartData = await fetchCartData(userId);
-        setCart(cartData);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const handleRemove = (productId) => {
+    removeFromCart(productId);
+  };
 
-    loadCart();
-  }, [userId]);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
-
-  if (!cart || cart.length === 0) {
-    return <p>No cart data found</p>;
-  }
+  const handleClear = () => {
+    clearCart();
+  };
 
   return (
-    <>
-      <h1>Cart Page</h1>
-      {cart.map((cartItem) => (
-        <div key={cartItem.id}>
-          <p>User ID: {cartItem.userId}</p>
-          <p>Date: {cartItem.date}</p>
-          <ul>
-            {cartItem.products.map((product, index) => (
-              <li key={index}>
-                <p>Product ID: {product.productId}</p>
-                <p>Quantity: {product.quantity}</p>
+    <div className="cart-page">
+      <h1>Shopping Cart</h1>
+      {cart.items.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <>
+          <ul className="cart-items">
+            {cart.items.map((item) => (
+              <li key={item.id} className="cart-item">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="cart-item-image"
+                />
+                <div className="cart-item-details">
+                  <h2>{item.title}</h2>
+                  <p>Quantity: {item.quantity}</p>
+                  <p>Price: ${item.price}</p>
+                  <button onClick={() => handleRemove(item.id)}>Remove</button>
+                </div>
               </li>
             ))}
           </ul>
-        </div>
-      ))}
-    </>
+          <div className="cart-total">
+            <h2>Total Quantity: {cart.totalQuantity}</h2>
+            <button onClick={handleClear}>Clear Cart</button>
+          </div>
+        </>
+      )}
+    </div>
   );
 };
 

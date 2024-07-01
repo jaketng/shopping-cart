@@ -1,8 +1,11 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { ShoppingCart } from "phosphor-react";
+import { useCart } from "../contexts/CartContext.jsx";
 
-const Navbar = ({ cartQuantity }) => {
+const Navbar = () => {
+  const { cart } = useCart();
+
   return (
     <>
       <nav>
@@ -26,9 +29,7 @@ const Navbar = ({ cartQuantity }) => {
         <div className="cart-icon">
           <Link to="/cart">
             <ShoppingCart size={32} />{" "}
-            <span className="cart-quantity">
-              <p>{cartQuantity}</p>
-            </span>
+            <span className="cart-quantity">{cart.totalQuantity}</span>
           </Link>
         </div>
       </nav>
