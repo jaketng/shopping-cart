@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { addToCart } from "../api/fakestoreApi";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onAddToCart }) => {
   const [quantity, setQuantity] = useState(0);
-  const [cartQuantity, setCartQuantity] = useState(0);
 
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -17,7 +17,15 @@ const ProductCard = ({ product }) => {
     setQuantity(value >= 0 ? value : 0);
   };
 
-  const handleAddToCart = () => {};
+  const handleAddToCart = async () => {
+    try {
+      await addToCart(product.id, quantity);
+      onAddToCart(quantity);
+      setQuantity(0);
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+    }
+  };
 
   return (
     <div className="product-card">
