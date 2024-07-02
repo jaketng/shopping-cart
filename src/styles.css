@@ -281,7 +281,7 @@ nav {
   flex-direction: column;
   gap: 10px;
   max-width: 600px;
-  width: 50%;
+  width: 100%;
 }
 
 .cart-product-card {
@@ -289,6 +289,8 @@ nav {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  min-width: 400px;
+  width: 100%;
 }
 
 .cart-product-card img {
