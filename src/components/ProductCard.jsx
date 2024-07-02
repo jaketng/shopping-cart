@@ -20,7 +20,9 @@ const ProductCard = ({ product }) => {
   };
 
   const handleAddToCart = () => {
-    addToCart(product, quantity);
+    if (quantity > 0) {
+      addToCart(product, quantity);
+    }
     setQuantity(0);
   };
 
